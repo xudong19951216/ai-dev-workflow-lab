@@ -2,10 +2,10 @@
 
 ## 当前状态
 
-- 私有仓库 xudong19951216/ai-dev-workflow-lab，默认分支 main。
+- 公开仓库 xudong19951216/ai-dev-workflow-lab，默认分支 main。
 - 已合并 PR：#1（协作文档与模板）、#3（状态转换设计）、#4（状态转换实现与测试）、#5（CI 工作流）。
 - CI 已启用：`.github/workflows/ci.yml`，在 PR 与 main push 时运行，覆盖 Python 3.11、3.12、3.13 的标准库测试。
-- Codex 自动审查已开启；Grok 已创建事件触发 Routine。两者的自动触发效果待本次新 PR 验证，当前不视为已验证。
+- Codex 自动审查已开启，并已在本 PR（#6）因 opened 事件自动完成对提交 2f28b66efe1119ae655ee3986e7f80d5f127cb9b 的审查；Grok 已创建事件触发 Routine，其自动触发仍待验证。新提交的自动复审尚未验证。
 - WorkBuddy 仍由用户发消息启动；收到修复指令时直接读取 PR 上的审查意见，不依赖用户逐条转述。
 - 最终合并由用户确认。
 
@@ -31,7 +31,7 @@ AGENTS.md 为仓库根目录协作规则。docs/architecture.md 为状态转换�
 
 - 用户向 WorkBuddy 发消息启动任务；WorkBuddy 收到后拉取最新 main、读取 AGENTS.md 与关联 Issue 再开工。
 - 用户向 WorkBuddy 发修复指令；WorkBuddy 直接读取 PR 上的审查意见逐条处理。
-- Codex 自动审查、Grok 事件触发 Routine 的自动触发效果待本次新 PR 验证。
+- Codex 自动审查已因 PR opened 事件在本 PR 触发，并完成对 2f28b66 的审查；Grok 事件触发 Routine 的自动触发仍待验证。
 
 ## 已完成验证
 
