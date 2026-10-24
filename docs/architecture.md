@@ -29,7 +29,7 @@ README.md                # Python 要求、使用示例、测试命令
 公开导入路径：`from todo_workflow.transitions import transition_status`。
 签名：`transition_status(current: str, target: str) -> str`。
 合法状态仅为精确字符串 `todo`、`in_progress`、`done`。
-成功时返回 target，不修改输入或其他状态。连续调用应互不影响。
+成功时返回与 target 值相等的字符串，不约束返回对象与 target 的身份（is）或是否保留 str 子类；直接返回 target 即可满足契约。不修改输入或其他状态，连续调用应互不影响。
 
 转换矩阵为唯一业务依据：
 
@@ -59,9 +59,9 @@ README.md                # Python 要求、使用示例、测试命令
 - 穷举矩阵 9 个组合，覆盖 6 个成功结果和 3 个非法转换。
 - current 与 target 分别覆盖 None、整数、布尔值、列表、字典，均抛 TypeError；尤其不能因列表/字典不可哈希而在错误阶段意外报错。
 - 两参数分别覆盖空串、空白、大小写错误、前后空格、unknown，均抛 ValueError；另一参数使用合法状态。
-- 优先级：("unknown", None) 抛 TypeError 且错误信息指出 target；(None, "unknown") 指出 current；("unknown", "bad") 抛 ValueError 且指出 current。
+- 优先级：("unknown", None) 抛 TypeError 且错误信息指出 target；(None, "unknown") 指出 current；("unknown", "bad") 抛 ValueError 且指出 current；(None, []) 两参数均非字符串时抛 TypeError 且指出 current。
 - 验证参数错误消息包含参数名、非法转换消息包含两个状态；不比较整段固定文本。
-- 至少一个自定义 str 子类成功案例，验证契约允许字符串子类。
+- 至少一个自定义 str 子类成功案例，验证契约允许字符串子类；断言返回值是字符串且 == 目标值，不断言对象身份或具体子类。
 - 独立连续调用覆盖两个合法转换，确认前一次调用不改变后一次结果。
 
 不要求生产函数有额外扩展、复杂类层次、覆盖率工具或专用测试框架。
@@ -73,7 +73,7 @@ README.md                # Python 要求、使用示例、测试命令
 3. 实现上述函数、标准库测试和 README 运行说明；按需新增最小 .gitignore 忽略 Python 缓存，不提交缓存文件。
 4. 从仓库根目录运行 `python -m unittest discover -s tests -v`。Windows 若使用 `py -3`，记录实际等价命令与 Python 版本。
 5. 必须确认测试被发现并实际执行、退出码为 0；记录测试方法数量与参数覆盖情况（subTest 不一定增加方法计数）。
-6. README 给出一条成功示例、一条异常示例、测试命令；用运行结果验证示例。
+6. 在现有 README 追加 Python 模块小节，保留原有项目介绍和全部文档导航，增加设计文档链接；给出一条成功示例、一条异常示例、测试命令，用运行结果验证示例。
 7. 创建实现 PR，正文使用仓库模板并填写 `Closes #2`，提供实际测试结果与完整 Head SHA，等待同 SHA 双审。
 8. 两位审查者可各自在自己的可用环境运行测试；没有执行条件时如实注明静态审查，不假称运行。用户确认后合并。
 
