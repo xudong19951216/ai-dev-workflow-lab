@@ -2,8 +2,6 @@
 name: 开发任务
 about: 一个可独立验收的开发任务，对应一条工作流任务
 title: "[任务] "
-labels: ""
-assignees: ""
 ---
 
 ## 目标

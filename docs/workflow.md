@@ -13,14 +13,15 @@
 AGENTS.md
 docs/workflow.md
 docs/review-format.md
-docs/architecture.md
-docs/decisions/
 .github/ISSUE_TEMPLATE/task.md
 .github/pull_request_template.md
 README.md
+# 后续/按需（进入代码设计时再由 Codex 提供，不预先创建空文件）：
+docs/architecture.md
+docs/decisions/
 ```
 
-AGENTS.md 为仓库根目录协作规则。审查结果、修复清单与交接格式保存在 docs/review-format.md。Issue 与 PR 模板分别位于 .github/ISSUE_TEMPLATE/task.md 与 .github/pull_request_template.md。
+AGENTS.md 为仓库根目录协作规则。审查结果、修复清单与交接格式保存在 docs/review-format.md。Issue 与 PR 模板分别位于 .github/ISSUE_TEMPLATE/task.md 与 .github/pull_request_template.md。docs/architecture.md 与 docs/decisions/ 为后续/按需产物，待代码设计轮由 Codex 提供后创建。
 
 ## 交接状态
 
